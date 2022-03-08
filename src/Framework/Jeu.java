@@ -27,6 +27,9 @@ public class Jeu {
     public void calculerLeVainqueur(){
 
     }
+    public void incrementerTour(){
+        this.numTour++;
+    }
 
     //GETTER ET SETTER
     public int getNbTour() {

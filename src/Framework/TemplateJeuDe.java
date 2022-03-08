@@ -11,8 +11,11 @@ public abstract class TemplateJeuDe {
     public abstract void initialiserJeu(int nbJoueur, int nbDeParJoueur, int nbFaceDe, int nbTour, IStrategie regleJeu);
     public abstract void creerJoueur(int nbJoueur);
     public abstract void creerDe(int nbFaceDe, int nbDeParJoueur);
+    public abstract void jouer();
     public final void creerJeuBunco(int nbJoueur, int nbDeParJoueur, int nbFaceDe, int nbTour, IStrategie regleJeu){
         initialiserJeu(nbJoueur, nbDeParJoueur, nbFaceDe, nbTour, regleJeu);
         creerJoueur(nbJoueur);
+        creerDe(nbFaceDe, nbDeParJoueur);
+        jouer();
     }
 }

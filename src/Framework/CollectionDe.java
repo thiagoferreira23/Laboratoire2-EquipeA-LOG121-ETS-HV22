@@ -19,11 +19,9 @@ public class CollectionDe<T extends Comparable>{
         for (int i = 0; i < lstDe.length; i++){
             if (lstDe[i] == null){
                 lstDe[i] = de;
-                System.out.println("Ajouté!");
                 break;
             }
             if (lstDe[lstDe.length-1] != null){
-                System.out.println("Tableau rempli!");
                 break;
             }
         }

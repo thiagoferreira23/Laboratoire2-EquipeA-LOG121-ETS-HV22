@@ -22,4 +22,13 @@ public class iterateurJoueur implements Iterator<Joueur> {
     public Joueur next() {
         return lstJoueur.next();
     }
+
+    public int size()  {
+        int i = 0;
+        while (hasNext()) {
+            this.next();
+            i++;
+        }
+        return i;
+    }
 }

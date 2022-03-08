@@ -18,11 +18,9 @@ public class CollectionJoueur<T extends Comparable> {
         for (int i = 0; i < lstJoueur.length; i++){
             if (lstJoueur[i] == null){
                 lstJoueur[i] = joueur;
-                System.out.println("Ajouté!");
                 break;
             }
             if (lstJoueur[lstJoueur.length-1] != null){
-                System.out.println("Tableau rempli!");
                 break;
             }
         }

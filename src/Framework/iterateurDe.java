@@ -20,4 +20,13 @@ public class iterateurDe implements Iterator<De> {
     public De next() {
         return lstDe.next();
     }
+
+    public int size()  {
+        int i = 0;
+        while (lstDe.hasNext()) {
+            this.next();
+            i++;
+        }
+        return i;
+    }
 }
