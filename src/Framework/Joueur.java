@@ -7,7 +7,7 @@ package Framework;
  * @version 1.0
  * @since 2022-02-24 9:22 a.m.
  */
-public class Joueur implements Comparable{
+public class Joueur implements Comparable<Joueur>{
 
     private String nomComplet;
     private int idJoueur;
@@ -28,11 +28,26 @@ public class Joueur implements Comparable{
         this.status = status;
     }
 
+    //METHODES
     @Override
     public String toString() {
         return nomComplet +", le Joueur " + idJoueur + " a obtenu " + points +" points";
     }
 
+    @Override
+    public int compareTo(Joueur joueur) {
+        if (this.points == joueur.getPoints()){
+            return 0;
+        }
+        else if (this.points > joueur.getPoints()){
+            return 1;
+        }
+        else {
+            return -1;
+        }
+    }
+
+    //GETTER ET SETTER
     public String getNomComplet() {
         return nomComplet;
     }
@@ -64,6 +79,5 @@ public class Joueur implements Comparable{
     public void setStatus(Boolean status) {
         this.status = status;
     }
-
 
 }
