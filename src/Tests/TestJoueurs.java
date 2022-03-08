@@ -39,8 +39,8 @@ public class TestJoueurs {
 
         //Test Bunco+
         BuncoPlus buncoPlus = new BuncoPlus();
-        buncoPlus.initialiserJeu(1,2,6,1,new StrategieBunco());
-        buncoPlus.jouerUnTour();
+        buncoPlus.initialiserJeu(1,3,6,1,new StrategieBunco());
+        buncoPlus.calculerScoreTour();
 
 
 

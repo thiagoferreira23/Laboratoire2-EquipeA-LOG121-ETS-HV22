@@ -45,9 +45,10 @@ public class De implements Comparable<De> {
         }
     }
 
-    public void roulerDe() {
+    public int roulerDe() {
         Random rnd = new Random();
         this.faceJouer = rnd.nextInt(this.nbFaceDe) + 1;
+        return this.faceJouer;
     }
 
     //GETTER ET SETTER

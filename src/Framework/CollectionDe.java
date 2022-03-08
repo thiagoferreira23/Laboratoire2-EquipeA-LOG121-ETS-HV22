@@ -14,6 +14,7 @@ public class CollectionDe<T extends Comparable>{
     public CollectionDe(int lstDeCapacite){
         lstDe = new De[lstDeCapacite];
     }
+
     public void ajouterDe(De de){
         for (int i = 0; i < lstDe.length; i++){
             if (lstDe[i] == null){

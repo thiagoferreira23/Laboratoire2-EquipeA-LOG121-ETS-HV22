@@ -32,7 +32,7 @@ public class BuncoPlus extends TemplateJeuDe {
         jeuBuncoPlus.setLstDeEnJeu(lstNvDe);
     }
 
-    public void jouerUnTour(){
+    public void calculerScoreTour(){
         //GET NOMBRE DE DICE PAR TOUR
         iterateurDe iteDe = jeuBuncoPlus.getIteDe();
 
@@ -41,8 +41,7 @@ public class BuncoPlus extends TemplateJeuDe {
 
         //FAIRE AFFICHER LES VALEURS DES DÉS
         while (iteDe.hasNext()){
-            iteDe.next().roulerDe();
-            System.out.print(iteDe.next().getFaceJouer()+ " ");
+            System.out.print(iteDe.next().roulerDe() + " ");
         }
 
     }
