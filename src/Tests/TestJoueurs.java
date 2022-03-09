@@ -3,8 +3,6 @@ package Tests;
 import Bunco.BuncoPlus;
 import Framework.*;
 
-import java.util.ArrayList;
-
 /**
  * <p>Description de la classe</p>
  *
@@ -38,9 +36,8 @@ public class TestJoueurs {
         //de.affichageTab();*/
 
         //Test Bunco+
-        BuncoPlus buncoPlus = new BuncoPlus();
-        buncoPlus.initialiserJeu(1,3,6,2,new StrategieBunco());
-        buncoPlus.calculerScoreTour();
+        BuncoPlus buncoPlus = new BuncoPlus(2,3,6,3, new StrategieBuncoPlus());
+        buncoPlus.jouer();
 
 
 

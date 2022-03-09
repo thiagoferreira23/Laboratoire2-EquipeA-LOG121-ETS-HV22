@@ -2,39 +2,26 @@ package Bunco;
 
 import Framework.*;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
-public class BuncoPlus extends TemplateJeuDe {
-    private Jeu jeuBuncoPlus;
+public class BuncoPlus extends Jeu {
 
-    public void initialiserJeu(int nbJoueur, int nbDeParJoueur, int nbFaceDe, int nbTour, IStrategie regleJeu){
-        jeuBuncoPlus = new Jeu(nbTour);
-        this.creerJoueur(nbJoueur);
-        this.creerDe(nbFaceDe, nbDeParJoueur);
+    public BuncoPlus(int nbTourPourJeu, int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie strategyCalculer) {
+        super(nbTourPourJeu, nbDeJoueur, nbFaceDe, nbDeParJoueur, strategyCalculer);
     }
 
     @Override
-    public void creerJoueur(int nbDeJoueur) {
-        CollectionJoueur<Joueur> lstNvJoueur = new CollectionJoueur<Joueur>(nbDeJoueur);
-        for (int i = 0; i < nbDeJoueur; i++){
-            lstNvJoueur.ajouterJoueur(new Joueur ("J"+(i+1), (i+1), 0, true));
-        }
-        jeuBuncoPlus.setLstJoueurEnJeu(lstNvJoueur);
+    public void calculerScoreTour() {
+        this.getTypeStrategieCalcul().calculerScoreTour(this);
     }
 
     @Override
-    public void creerDe(int nbFaceDe, int nbDeParJoueur) {
-        CollectionDe<De> lstNvDe =  new CollectionDe<De>(nbDeParJoueur);
-        for (int i = 0; i < nbDeParJoueur; i++){
-            lstNvDe.ajouterDe(new De (nbFaceDe));
-        }
-        jeuBuncoPlus.setLstDeEnJeu(lstNvDe);
+    public void calculerLeVainqueur() {
+        this.getTypeStrategieCalcul().calculerLeVainqueur(this);
     }
 
     @Override
-    public void jouer(){
+    public void jouer() {
         Scanner sc = new Scanner(System.in);
 
         //DÉMARRER LA PARTIE
@@ -42,46 +29,54 @@ public class BuncoPlus extends TemplateJeuDe {
         String demarrerJeu = sc.nextLine();
 
         //CRÉER TABLEAU POUR DÉS JOUÉS
-        iterateurDe iteDe = jeuBuncoPlus.getIteDe();
-        int[] lstValeurDe = new int[iteDe.size()];
+        iterateurDe iteDe = this.getIteDe();
+        int[] lstValeurDeEnJeu = new int[iteDe.size()];
 
         //AFFICHER RÉSULTAT DES DÉS PAR TOUR
-        while (jeuBuncoPlus.getNumTour() != jeuBuncoPlus.getNbTour()){
-            iteDe = jeuBuncoPlus.getIteDe();
-            int i = 0;
-            while (iteDe.hasNext()){
-                lstValeurDe[i] = iteDe.next().roulerDe();
-                i++;
+        int pointage = 0;
+        while (this.getNumTour() != this.getNbTour()) {
+            boolean pointGagne = true;
+            while (pointGagne == true){
+                pointGagne = false;
+
+                iteDe = this.getIteDe();
+                int index = 0;
+                while (iteDe.hasNext()) {
+                    lstValeurDeEnJeu[index] = iteDe.next().roulerDe();
+                    if (lstValeurDeEnJeu[index] == this.getNumTour()+1){
+                        pointGagne = true;
+                    }
+                    index++;
+                }
+                calculerScoreTour();
+                if (pointGagne == true){
+                    System.out.println("Relancer de nouveau!");
+                    String continuerJeu = sc.nextLine();
+                }
             }
-            calculerScoreTour();
-            afficherResultatParTour(lstValeurDe);
-            jeuBuncoPlus.incrementerTour();
+
+            //IMPLÉMENTER LE SYSTEME LOOP POUR AFFICHER
+            //afficherResultatParTour(lstValeurDeEnJeu, pointageEnJeu);
+            this.incrementerTour();
             System.out.println("Prochain tour...");
             String continuerJeu = sc.nextLine();
         }
-
     }
 
-    //CALCULER POINTS PAR TOUR
-    public void calculerScoreTour(){
-
-    }
-
-    //AFFICHAGE DES RESULTATS
-    public void afficherResultatParTour(int[] lstValeurDe){
+    //AFFICHAGE DES RÉSULTATS
+    public void afficherResultatParTour(int[] lstValeurDe, int pointage) {
         System.out.println("========================");
         System.out.println("    NUMÉRO DE TOUR     ");
         System.out.println("       JOUEUR #X     ");
         System.out.print("======================== \n \n");
         System.out.print("DÉS JOUÉS : ");
-        for (int i = 0; i < lstValeurDe.length; i++){
+        for (int i = 0; i < lstValeurDe.length; i++) {
             System.out.print(lstValeurDe[i] + " ");
         }
         System.out.print("\n");
         System.out.println("---------------");
-        System.out.println("POINTS : X");
+        System.out.println("POINTS : " + pointage);
         System.out.println("---------------");
         System.out.println("\n");
     }
-
 }

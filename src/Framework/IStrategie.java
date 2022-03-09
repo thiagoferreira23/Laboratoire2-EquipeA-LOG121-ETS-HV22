@@ -8,8 +8,7 @@ package Framework;
  * @since 2022-02-24 9:22 a.m.
  */
 public interface IStrategie {
-
-    //public void calculerLeVainqueur(Jeu jeu){}
-    //public void calculerScoreTour(Jeu jeu){}
+    public void calculerLeVainqueur(Jeu jeu);
+    public void calculerScoreTour(Jeu jeu);
 
 }

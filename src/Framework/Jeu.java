@@ -7,26 +7,48 @@ package Framework;
  * @version 1.0
  * @since 2022-02-24 9:22 a.m.
  */
-public class Jeu {
+public abstract class Jeu {
 
     private CollectionJoueur<Joueur> lstJoueurEnJeu;
     private CollectionDe<De> lstDeEnJeu;
+    private IStrategie typeStrategieCalcul;
     private iterateurJoueur iteJoueur;
     private iterateurDe iteDe;
     private int numTour = 0;
-    private int nbTour = 0;
+    private int nbTour;
 
-    public Jeu (int nbTourPourJeu){
-        this.nbTour = nbTourPourJeu;
+    public Jeu (int nbTourPourJeu, int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie typeStrategieCalcul){
+        initialiserJeu(nbTourPourJeu, nbDeJoueur, nbFaceDe, nbDeParJoueur, typeStrategieCalcul);
     }
 
     //METHODES
-    public void calculerScoreTour(){
-        //APPELLE UN TYPE DE ISTRATEGIE
-    }
-    public void calculerLeVainqueur(){
+    public void initialiserJeu(int nbTourPourJeu,int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie typeStrategieCalcul){
+        creerJoueur(nbDeJoueur);
+        creerDe(nbFaceDe, nbDeParJoueur);
+        setNbTour(nbTourPourJeu);
+        setTypeStrategieCalcul(typeStrategieCalcul);
+    };
 
+    public void creerJoueur(int nbDeJoueur) {
+        CollectionJoueur<Joueur> lstNvJoueur = new CollectionJoueur<Joueur>(nbDeJoueur);
+        for (int i = 0; i < nbDeJoueur; i++){
+            lstNvJoueur.ajouterJoueur(new Joueur ("J"+(i+1), (i+1), 0, true));
+        }
+        this.lstJoueurEnJeu = lstNvJoueur;
     }
+    public void creerDe(int nbFaceDe, int nbDeParJoueur) {
+        CollectionDe<De> lstNvDe =  new CollectionDe<De>(nbDeParJoueur);
+        for (int i = 0; i < nbDeParJoueur; i++){
+            lstNvDe.ajouterDe(new De (nbFaceDe));
+        }
+        this.setLstDeEnJeu(lstNvDe);
+    }
+
+    public abstract void calculerScoreTour();
+
+    public abstract void calculerLeVainqueur();
+    public abstract void jouer();
+
     public void incrementerTour(){
         this.numTour++;
     }
@@ -52,10 +74,6 @@ public class Jeu {
         return lstJoueurEnJeu;
     }
 
-    public void setLstJoueurEnJeu(CollectionJoueur<Joueur> lstJoueurEnJeu) {
-        this.lstJoueurEnJeu = lstJoueurEnJeu;
-    }
-
     public CollectionDe<De> getLstDeEnJeu() {
         return lstDeEnJeu;
     }
@@ -65,12 +83,18 @@ public class Jeu {
     }
 
     public iterateurDe getIteDe() {
-        iteDe = lstDeEnJeu.creerIterateur();
-        return iteDe;
+        return lstDeEnJeu.creerIterateur();
     }
 
     public iterateurJoueur getIteJoueur() {
-        iteJoueur = lstJoueurEnJeu.creerIterateur();
-        return iteJoueur;
+        return lstJoueurEnJeu.creerIterateur();
+    }
+
+    public IStrategie getTypeStrategieCalcul() {
+        return typeStrategieCalcul;
+    }
+
+    public void setTypeStrategieCalcul(IStrategie typeStrategieCalcul) {
+        this.typeStrategieCalcul = typeStrategieCalcul;
     }
 }
