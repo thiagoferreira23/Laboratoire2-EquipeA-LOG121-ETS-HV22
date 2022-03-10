@@ -17,6 +17,8 @@ public abstract class Jeu {
     private int numTour = 0;
     private int nbTour;
 
+    private int pointageParTour; //Pointage par tour
+
     public Jeu (int nbTourPourJeu, int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie typeStrategieCalcul){
         initialiserJeu(nbTourPourJeu, nbDeJoueur, nbFaceDe, nbDeParJoueur, typeStrategieCalcul);
     }
@@ -45,7 +47,6 @@ public abstract class Jeu {
     }
 
     public abstract void calculerScoreTour();
-
     public abstract void calculerLeVainqueur();
     public abstract void jouer();
 
@@ -96,5 +97,13 @@ public abstract class Jeu {
 
     public void setTypeStrategieCalcul(IStrategie typeStrategieCalcul) {
         this.typeStrategieCalcul = typeStrategieCalcul;
+    }
+
+    public int getPointageParTour() {
+        return pointageParTour;
+    }
+
+    public void setPointageParTour(int pointageParTour) {
+        this.pointageParTour = pointageParTour;
     }
 }

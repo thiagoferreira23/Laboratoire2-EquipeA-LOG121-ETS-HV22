@@ -25,49 +25,61 @@ public class BuncoPlus extends Jeu {
         Scanner sc = new Scanner(System.in);
 
         //DÉMARRER LA PARTIE
-        System.out.println("Rouler les dés...");
+        System.out.println("Commencer la partie...");
         String demarrerJeu = sc.nextLine();
-
-        //CRÉER TABLEAU POUR DÉS JOUÉS
-        iterateurDe iteDe = this.getIteDe();
-        int[] lstValeurDeEnJeu = new int[iteDe.size()];
 
         //AFFICHER RÉSULTAT DES DÉS PAR TOUR
         int pointage = 0;
         while (this.getNumTour() != this.getNbTour()) {
-            boolean pointGagne = true;
-            while (pointGagne == true){
-                pointGagne = false;
+            //CRÉER TABLEAU POUR LES JOUEURS
+            iterateurJoueur iteJoueur = this.getIteJoueur();
 
-                iteDe = this.getIteDe();
-                int index = 0;
-                while (iteDe.hasNext()) {
-                    lstValeurDeEnJeu[index] = iteDe.next().roulerDe();
-                    if (lstValeurDeEnJeu[index] == this.getNumTour()+1){
-                        pointGagne = true;
+            //CRÉER TABLEAU POUR DÉS JOUÉS
+            iterateurDe iteDe = this.getIteDe();
+            int[] lstValeurDeEnJeu = new int[iteDe.size()];
+
+            //JOUEUR X JOUE UN TOUR
+            while (iteJoueur.hasNext()) {
+                Joueur joueur = iteJoueur.next();
+                boolean pointGagne = true;
+                while (pointGagne == true) {
+                    pointGagne = false;
+
+                    iteDe = this.getIteDe();
+                    int index = 0;
+                    while (iteDe.hasNext()) {
+                        lstValeurDeEnJeu[index] = iteDe.next().roulerDe();
+                        if (lstValeurDeEnJeu[index] == this.getNumTour() + 1) {
+                            pointGagne = true;
+                        }
+                        index++;
                     }
-                    index++;
-                }
-                calculerScoreTour();
-                if (pointGagne == true){
-                    System.out.println("Relancer de nouveau!");
+                    calculerScoreTour();
+                    joueur.setPoints(joueur.getPoints() + this.getPointageParTour());
+                    afficherResultatParTour(this.getNumTour(), joueur.getIdJoueur(), lstValeurDeEnJeu, this.getPointageParTour());
+                    if (pointGagne == true) {
+                        System.out.println("Relancer de nouveau!");
+                    }
+                    else {
+                        System.out.println("Prochain joueur!!");
+                    }
                     String continuerJeu = sc.nextLine();
                 }
             }
-
-            //IMPLÉMENTER LE SYSTEME LOOP POUR AFFICHER
-            //afficherResultatParTour(lstValeurDeEnJeu, pointageEnJeu);
             this.incrementerTour();
+            System.out.println("\n");
             System.out.println("Prochain tour...");
             String continuerJeu = sc.nextLine();
         }
+        System.out.println("\n \n");
+        afficherResultatFinal();
     }
 
     //AFFICHAGE DES RÉSULTATS
-    public void afficherResultatParTour(int[] lstValeurDe, int pointage) {
+    public void afficherResultatParTour(int numTour, int idJoueur, int[] lstValeurDe, int pointage) {
         System.out.println("========================");
-        System.out.println("    NUMÉRO DE TOUR     ");
-        System.out.println("       JOUEUR #X     ");
+        System.out.println("        TOUR " + (numTour + 1));
+        System.out.println("       JOUEUR " + idJoueur);
         System.out.print("======================== \n \n");
         System.out.print("DÉS JOUÉS : ");
         for (int i = 0; i < lstValeurDe.length; i++) {
@@ -76,6 +88,22 @@ public class BuncoPlus extends Jeu {
         System.out.print("\n");
         System.out.println("---------------");
         System.out.println("POINTS : " + pointage);
+        System.out.println("---------------");
+        System.out.println("\n");
+    }
+
+    //AFFICHAGE DES RÉSULTATS
+    public void afficherResultatFinal() {
+        iterateurJoueur iteJoueur = this.getIteJoueur();
+        System.out.println("=========================");
+        System.out.println("         BUNCO+ ");
+        System.out.println("    CLASSEMENT FINALE ");
+        System.out.print  ("========================= \n \n");
+        while (iteJoueur.hasNext()){
+            Joueur joueur = iteJoueur.next();
+            System.out.println(joueur.getNomComplet() + " : " + joueur.getPoints() + " POINTS");
+        }
+        System.out.print("\n");
         System.out.println("---------------");
         System.out.println("\n");
     }

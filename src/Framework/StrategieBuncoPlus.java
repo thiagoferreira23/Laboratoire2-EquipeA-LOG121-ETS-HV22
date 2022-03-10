@@ -14,13 +14,14 @@ public class StrategieBuncoPlus implements IStrategie{
         int point = 0;
         while (iteDe.hasNext()){
             int chiffreJoue = iteDe.next().getFaceJouer();
-            System.out.println(chiffreJoue);
             if (jeu.getNumTour()+1 == chiffreJoue){
                 point++;
             }
-            //CONDITION BUNCO SI POINTS = 3
-        }
-        System.out.println("POINTAGE : " + point);
+            if (point == 3){
+                point = 21;
+            }
 
+        }
+        jeu.setPointageParTour(point);
     }
 }
