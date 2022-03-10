@@ -10,6 +10,7 @@ package Framework;
  */
 public class CollectionDe<T extends Comparable>{
     private De[] lstDe;
+    private iterateurDe iteDe;
 
     public CollectionDe(int lstDeCapacite){
         lstDe = new De[lstDeCapacite];
@@ -28,7 +29,7 @@ public class CollectionDe<T extends Comparable>{
     }
 
     public iterateurDe creerIterateur(){
-        iterateurDe iteDe = new iterateurDe(lstDe);
+        iteDe = new iterateurDe(lstDe);
         return iteDe;
     }
 }

@@ -12,11 +12,10 @@ public abstract class Jeu {
     private CollectionJoueur<Joueur> lstJoueurEnJeu;
     private CollectionDe<De> lstDeEnJeu;
     private IStrategie typeStrategieCalcul;
-    private iterateurJoueur iteJoueur;
-    private iterateurDe iteDe;
     private int numTour = 0;
     private int nbTour;
-
+    private int pointageParTour; //Pointage par tour
+  
     /**
      <p>Cette méthode est le constructeur par défaut de la classe Jeu. Elle
      * permet d'initialiser les variables de cette classe avec leurs paramètres
@@ -142,22 +141,6 @@ public abstract class Jeu {
      * <p></p>
      * @return
      */
-    public iterateurDe getIteDe() {
-        return lstDeEnJeu.creerIterateur();
-    }
-
-    /**
-     * <p></p>
-     * @return
-     */
-    public iterateurJoueur getIteJoueur() {
-        return lstJoueurEnJeu.creerIterateur();
-    }
-
-    /**
-     * <p></p>
-     * @return
-     */
     public IStrategie getTypeStrategieCalcul() {
         return typeStrategieCalcul;
     }
@@ -168,5 +151,13 @@ public abstract class Jeu {
      */
     public void setTypeStrategieCalcul(IStrategie typeStrategieCalcul) {
         this.typeStrategieCalcul = typeStrategieCalcul;
+    }
+
+    public int getPointageParTour() {
+        return pointageParTour;
+    }
+
+    public void setPointageParTour(int pointageParTour) {
+        this.pointageParTour = pointageParTour;
     }
 }
