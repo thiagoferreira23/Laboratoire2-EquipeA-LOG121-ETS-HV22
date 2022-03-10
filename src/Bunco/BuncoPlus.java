@@ -2,81 +2,49 @@ package Bunco;
 
 import Framework.*;
 
-import java.util.Scanner;
+import java.util.Random;
 
-public class BuncoPlus extends Jeu {
+public class BuncoPlus extends TemplateJeuDe {
+    private Jeu jeuBuncoPlus;
 
-    public BuncoPlus(int nbTourPourJeu, int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie strategyCalculer) {
-        super(nbTourPourJeu, nbDeJoueur, nbFaceDe, nbDeParJoueur, strategyCalculer);
+    @Override
+    public void initialiserJeu(int nbJoueur, int nbDeParJoueur, int nbFaceDe, int nbTour, IStrategie regleJeu){
+        jeuBuncoPlus = new Jeu(nbTour);
+        this.creerJoueur(nbJoueur);
+        this.creerDe(nbFaceDe, nbDeParJoueur);
     }
 
     @Override
-    public void calculerScoreTour() {
-        this.getTypeStrategieCalcul().calculerScoreTour(this);
+    public void creerJoueur(int nbDeJoueur) {
+        CollectionJoueur<Joueur> lstNvJoueur = new CollectionJoueur<Joueur>(nbDeJoueur);
+        for (int i = 0; i < nbDeJoueur; i++){
+            lstNvJoueur.ajouterJoueur(new Joueur ("J"+(i+1), (i+1), 0, true));
+        }
+        jeuBuncoPlus.setLstJoueurEnJeu(lstNvJoueur);
     }
 
     @Override
-    public void calculerLeVainqueur() {
-        this.getTypeStrategieCalcul().calculerLeVainqueur(this);
+    public void creerDe(int nbFaceDe, int nbDeParJoueur) {
+        CollectionDe<De> lstNvDe =  new CollectionDe<De>(nbDeParJoueur);
+        for (int i = 0; i < nbDeParJoueur; i++){
+            lstNvDe.ajouterDe(new De (nbFaceDe));
+        }
+        jeuBuncoPlus.setLstDeEnJeu(lstNvDe);
     }
 
-    @Override
-    public void jouer() {
-        Scanner sc = new Scanner(System.in);
+    public void jouerUnTour(){
+        //GET NOMBRE DE DICE PAR TOUR
+        iterateurDe iteDe = jeuBuncoPlus.getIteDe();
 
-        //DÉMARRER LA PARTIE
         System.out.println("Rouler les dés...");
-        String demarrerJeu = sc.nextLine();
+        System.out.println("Résultat : ");
 
-        //CRÉER TABLEAU POUR DÉS JOUÉS
-        iterateurDe iteDe = this.getIteDe();
-        int[] lstValeurDeEnJeu = new int[iteDe.size()];
-
-        //AFFICHER RÉSULTAT DES DÉS PAR TOUR
-        int pointage = 0;
-        while (this.getNumTour() != this.getNbTour()) {
-            boolean pointGagne = true;
-            while (pointGagne == true){
-                pointGagne = false;
-
-                iteDe = this.getIteDe();
-                int index = 0;
-                while (iteDe.hasNext()) {
-                    lstValeurDeEnJeu[index] = iteDe.next().roulerDe();
-                    if (lstValeurDeEnJeu[index] == this.getNumTour()+1){
-                        pointGagne = true;
-                    }
-                    index++;
-                }
-                calculerScoreTour();
-                if (pointGagne == true){
-                    System.out.println("Relancer de nouveau!");
-                    String continuerJeu = sc.nextLine();
-                }
-            }
-
-            //IMPLÉMENTER LE SYSTEME LOOP POUR AFFICHER
-            //afficherResultatParTour(lstValeurDeEnJeu, pointageEnJeu);
-            this.incrementerTour();
-            System.out.println("Prochain tour...");
-            String continuerJeu = sc.nextLine();
+        //FAIRE AFFICHER LES VALEURS DES DÉS
+        while (iteDe.hasNext()){
+            iteDe.next().roulerDe();
+            System.out.print(iteDe.next().getFaceJouer()+ " ");
         }
+
     }
 
-    //AFFICHAGE DES RÉSULTATS
-    public void afficherResultatParTour(int[] lstValeurDe, int pointage) {
-        System.out.println("========================");
-        System.out.println("    NUMÉRO DE TOUR     ");
-        System.out.println("       JOUEUR #X     ");
-        System.out.print("======================== \n \n");
-        System.out.print("DÉS JOUÉS : ");
-        for (int i = 0; i < lstValeurDe.length; i++) {
-            System.out.print(lstValeurDe[i] + " ");
-        }
-        System.out.print("\n");
-        System.out.println("---------------");
-        System.out.println("POINTS : " + pointage);
-        System.out.println("---------------");
-        System.out.println("\n");
-    }
 }
