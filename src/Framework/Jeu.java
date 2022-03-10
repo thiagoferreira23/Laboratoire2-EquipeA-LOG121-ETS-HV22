@@ -17,18 +17,28 @@ public abstract class Jeu {
     private int numTour = 0;
     private int nbTour;
 
+    /**
+     <p>Cette méthode est le constructeur par défaut de la classe Jeu. Elle
+     * permet d'initialiser les variables de cette classe avec leurs paramètres
+     * défini.</p>
+     *
+     * @param nbTourPourJeu Le nombre de tours dans le jeu
+     * @param nbDeJoueur Le nombre de joueurs dans le jeu
+     * @param nbFaceDe Le nombre de face du dé dans le jeu
+     * @param nbDeParJoueur Le nombre de dés par joueur dans le jeu
+     * @param typeStrategieCalcul Le type de stratégie dans le jeu
+     */
     public Jeu (int nbTourPourJeu, int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie typeStrategieCalcul){
-        initialiserJeu(nbTourPourJeu, nbDeJoueur, nbFaceDe, nbDeParJoueur, typeStrategieCalcul);
-    }
-
-    //METHODES
-    public void initialiserJeu(int nbTourPourJeu,int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie typeStrategieCalcul){
         creerJoueur(nbDeJoueur);
         creerDe(nbFaceDe, nbDeParJoueur);
         setNbTour(nbTourPourJeu);
         setTypeStrategieCalcul(typeStrategieCalcul);
-    };
+    }
 
+    /**
+     * <p></p>
+     * @param nbDeJoueur
+     */
     public void creerJoueur(int nbDeJoueur) {
         CollectionJoueur<Joueur> lstNvJoueur = new CollectionJoueur<Joueur>(nbDeJoueur);
         for (int i = 0; i < nbDeJoueur; i++){
@@ -36,6 +46,12 @@ public abstract class Jeu {
         }
         this.lstJoueurEnJeu = lstNvJoueur;
     }
+
+    /**
+     * <p></p>
+     * @param nbFaceDe
+     * @param nbDeParJoueur
+     */
     public void creerDe(int nbFaceDe, int nbDeParJoueur) {
         CollectionDe<De> lstNvDe =  new CollectionDe<De>(nbDeParJoueur);
         for (int i = 0; i < nbDeParJoueur; i++){
@@ -44,56 +60,112 @@ public abstract class Jeu {
         this.setLstDeEnJeu(lstNvDe);
     }
 
+    /**
+     * <p></p>
+     */
     public abstract void calculerScoreTour();
 
+    /**
+     * <p></p>
+     */
     public abstract void calculerLeVainqueur();
+
+    /**
+     * <p></p>
+     */
     public abstract void jouer();
 
+    /**
+     * <p></p>
+     */
     public void incrementerTour(){
         this.numTour++;
     }
 
-    //GETTER ET SETTER
+    /**
+     * <p></p>
+     * @return
+     */
     public int getNbTour() {
         return nbTour;
     }
 
+    /**
+     * <p></p>
+     * @param nbTour
+     */
     public void setNbTour(int nbTour) {
         this.nbTour = nbTour;
     }
 
+    /**
+     * <p></p>
+     * @return
+     */
     public int getNumTour() {
         return numTour;
     }
 
+    /**
+     * <p></p>
+     * @param numTour
+     */
     public void setNumTour(int numTour) {
         this.numTour = numTour;
     }
 
+    /**
+     * <p></p>
+     * @return
+     */
     public CollectionJoueur<Joueur> getLstJoueurEnJeu() {
         return lstJoueurEnJeu;
     }
 
+    /**
+     * <p></p>
+     * @return
+     */
     public CollectionDe<De> getLstDeEnJeu() {
         return lstDeEnJeu;
     }
 
+    /**
+     * <p></p>
+     * @param lstDeEnJeu
+     */
     public void setLstDeEnJeu(CollectionDe<De> lstDeEnJeu) {
         this.lstDeEnJeu = lstDeEnJeu;
     }
 
+    /**
+     * <p></p>
+     * @return
+     */
     public iterateurDe getIteDe() {
         return lstDeEnJeu.creerIterateur();
     }
 
+    /**
+     * <p></p>
+     * @return
+     */
     public iterateurJoueur getIteJoueur() {
         return lstJoueurEnJeu.creerIterateur();
     }
 
+    /**
+     * <p></p>
+     * @return
+     */
     public IStrategie getTypeStrategieCalcul() {
         return typeStrategieCalcul;
     }
 
+    /**
+     * <p></p>
+     * @param typeStrategieCalcul
+     */
     public void setTypeStrategieCalcul(IStrategie typeStrategieCalcul) {
         this.typeStrategieCalcul = typeStrategieCalcul;
     }
