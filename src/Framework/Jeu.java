@@ -12,8 +12,6 @@ public abstract class Jeu {
     private CollectionJoueur<Joueur> lstJoueurEnJeu;
     private CollectionDe<De> lstDeEnJeu;
     private IStrategie typeStrategieCalcul;
-    private iterateurJoueur iteJoueur;
-    private iterateurDe iteDe;
     private int numTour = 0;
     private int nbTour;
 
@@ -81,14 +79,6 @@ public abstract class Jeu {
 
     public void setLstDeEnJeu(CollectionDe<De> lstDeEnJeu) {
         this.lstDeEnJeu = lstDeEnJeu;
-    }
-
-    public iterateurDe getIteDe() {
-        return lstDeEnJeu.creerIterateur();
-    }
-
-    public iterateurJoueur getIteJoueur() {
-        return lstJoueurEnJeu.creerIterateur();
     }
 
     public IStrategie getTypeStrategieCalcul() {

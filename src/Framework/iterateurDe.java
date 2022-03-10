@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 public class iterateurDe implements Iterator<De> {
     private Iterator<De> lstDe;
+
     public iterateurDe(De[] nvlstDe){
         lstDe = Arrays.stream(nvlstDe).iterator();
     }

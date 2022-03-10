@@ -32,10 +32,10 @@ public class BuncoPlus extends Jeu {
         int pointage = 0;
         while (this.getNumTour() != this.getNbTour()) {
             //CRÉER TABLEAU POUR LES JOUEURS
-            iterateurJoueur iteJoueur = this.getIteJoueur();
+            iterateurJoueur iteJoueur = this.getLstJoueurEnJeu().creerIterateur();
 
             //CRÉER TABLEAU POUR DÉS JOUÉS
-            iterateurDe iteDe = this.getIteDe();
+            iterateurDe iteDe = this.getLstDeEnJeu().creerIterateur();
             int[] lstValeurDeEnJeu = new int[iteDe.size()];
 
             //JOUEUR X JOUE UN TOUR
@@ -45,7 +45,7 @@ public class BuncoPlus extends Jeu {
                 while (pointGagne == true) {
                     pointGagne = false;
 
-                    iteDe = this.getIteDe();
+                    iteDe = this.getLstDeEnJeu().creerIterateur();
                     int index = 0;
                     while (iteDe.hasNext()) {
                         lstValeurDeEnJeu[index] = iteDe.next().roulerDe();
@@ -75,6 +75,8 @@ public class BuncoPlus extends Jeu {
         afficherResultatFinal();
     }
 
+
+    //METHODES POUR TESTER LES DONNES (PAS NECESSAIRE)
     //AFFICHAGE DES RÉSULTATS
     public void afficherResultatParTour(int numTour, int idJoueur, int[] lstValeurDe, int pointage) {
         System.out.println("========================");
@@ -94,7 +96,7 @@ public class BuncoPlus extends Jeu {
 
     //AFFICHAGE DES RÉSULTATS
     public void afficherResultatFinal() {
-        iterateurJoueur iteJoueur = this.getIteJoueur();
+        iterateurJoueur iteJoueur = this.getLstJoueurEnJeu().creerIterateur();
         System.out.println("=========================");
         System.out.println("         BUNCO+ ");
         System.out.println("    CLASSEMENT FINALE ");

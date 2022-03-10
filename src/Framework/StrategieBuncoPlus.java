@@ -10,7 +10,7 @@ public class StrategieBuncoPlus implements IStrategie{
 
     @Override
     public void calculerScoreTour(Jeu jeu) {
-        iterateurDe iteDe = jeu.getIteDe();
+        iterateurDe iteDe = jeu.getLstDeEnJeu().creerIterateur();
         int point = 0;
         while (iteDe.hasNext()){
             int chiffreJoue = iteDe.next().getFaceJouer();
