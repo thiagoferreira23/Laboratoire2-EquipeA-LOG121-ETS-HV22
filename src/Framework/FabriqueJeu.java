@@ -7,7 +7,7 @@ package Framework;
  * @version 1.0
  * @since 2022-02-24 9:26 a.m.
  */
-public abstract class TemplateJeuDe {
+public abstract class FabriqueJeu {
     public abstract void initialiserJeu(int nbJoueur, int nbDeParJoueur, int nbFaceDe, int nbTour, IStrategie regleJeu);
     public abstract void creerJoueur(int nbJoueur);
     public abstract void creerDe(int nbFaceDe, int nbDeParJoueur);
