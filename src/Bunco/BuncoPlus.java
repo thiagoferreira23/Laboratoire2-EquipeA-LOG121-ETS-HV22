@@ -3,38 +3,26 @@ package Bunco;
 import Framework.*;
 
 import java.util.Random;
+import java.util.Scanner;
 
-public class BuncoPlus extends TemplateJeuDe {
-    private Jeu jeuBuncoPlus;
+public class BuncoPlus extends Jeu {
 
-    @Override
-    public void initialiserJeu(int nbJoueur, int nbDeParJoueur, int nbFaceDe, int nbTour, IStrategie regleJeu){
-        jeuBuncoPlus = new Jeu(nbTour);
-        this.creerJoueur(nbJoueur);
-        this.creerDe(nbFaceDe, nbDeParJoueur);
+    public BuncoPlus(int nbTourPourJeu, int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie typeStrategieCalcul) {
+        super(nbTourPourJeu, nbDeJoueur, nbFaceDe, nbDeParJoueur, typeStrategieCalcul);
     }
 
     @Override
-    public void creerJoueur(int nbDeJoueur) {
-        CollectionJoueur<Joueur> lstNvJoueur = new CollectionJoueur<Joueur>(nbDeJoueur);
-        for (int i = 0; i < nbDeJoueur; i++){
-            lstNvJoueur.ajouterJoueur(new Joueur ("J"+(i+1), (i+1), 0, true));
-        }
-        jeuBuncoPlus.setLstJoueurEnJeu(lstNvJoueur);
+    public void calculerScoreTour() {
+        this.getTypeStrategieCalcul().calculerScoreTour(this);
     }
 
     @Override
-    public void creerDe(int nbFaceDe, int nbDeParJoueur) {
-        CollectionDe<De> lstNvDe =  new CollectionDe<De>(nbDeParJoueur);
-        for (int i = 0; i < nbDeParJoueur; i++){
-            lstNvDe.ajouterDe(new De (nbFaceDe));
-        }
-        jeuBuncoPlus.setLstDeEnJeu(lstNvDe);
+    public void calculerLeVainqueur() {
+        this.getTypeStrategieCalcul().calculerLeVainqueur(this);
     }
 
-    public void jouerUnTour(){
-        //GET NOMBRE DE DICE PAR TOUR
-        iterateurDe iteDe = jeuBuncoPlus.getIteDe();
+    public void jouer(){
+        Scanner sc= new Scanner(System.in);
 
         //DÉMARRER LA PARTIE
         System.out.println("Commencer la partie...");

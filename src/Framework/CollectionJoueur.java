@@ -7,7 +7,7 @@ package Framework;
  * @version 1.0
  * @since 2022-02-24 9:20 a.m.
  */
-public class CollectionJoueur<T extends Comparable> {
+public class CollectionJoueur<T> {
     private Joueur[] lstJoueur;
 
     public CollectionJoueur(int lstJoueurCapacite){

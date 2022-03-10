@@ -9,7 +9,7 @@ import java.util.Random;
  * @version 1.0
  * @since 2022-02-24 9:22 a.m.
  */
-public class De implements Comparable<De> {
+public class De implements Comparable {
     private int nbFaceDe;
     private int faceJouer;
     private int [] aDe;
@@ -29,20 +29,6 @@ public class De implements Comparable<De> {
             System.out.println(this.aDe[i]);
         }
         return false;
-    }
-
-    //METHODES
-    @Override
-    public int compareTo(De de) {
-        if (this.nbFaceDe == de.getNbFacesDe()){
-            return 0;
-        }
-        else if (this.nbFaceDe > de.nbFaceDe){
-            return 1;
-        }
-        else {
-            return -1;
-        }
     }
 
     public int roulerDe() {
@@ -74,5 +60,18 @@ public class De implements Comparable<De> {
 
     public void setaDe(int[] aDe) {
         this.aDe = aDe;
+    }
+
+    public int compareTo(Object o) {
+        //METHODES
+        if (this.getFaceJouer() == ((De)o).getFaceJouer()){
+            return 0;
+        }
+        else if (this.getFaceJouer() > ((De)o).getFaceJouer()){
+            return 1;
+        }
+        else {
+            return -1;
+        }
     }
 }

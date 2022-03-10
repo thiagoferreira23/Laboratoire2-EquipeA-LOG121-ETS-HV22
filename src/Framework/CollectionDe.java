@@ -8,7 +8,7 @@ package Framework;
  * @version 1.0
  * @since 2022-02-24 9:22 a.m.
  */
-public class CollectionDe<T extends Comparable>{
+public class CollectionDe<T>{
     private De[] lstDe;
     private iterateurDe iteDe;
 

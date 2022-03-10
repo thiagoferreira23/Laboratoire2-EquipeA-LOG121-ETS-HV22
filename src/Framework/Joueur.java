@@ -65,5 +65,17 @@ public class Joueur implements Comparable{
         this.status = status;
     }
 
+    public int compareTo(Object o) {
+        //METHODES
+        if (this.getPoints() == ((Joueur)o).getPoints()){
+            return 0;
+        }
+        else if (this.getPoints() > ((Joueur)o).getPoints()){
+            return 1;
+        }
+        else {
+            return -1;
+        }
 
+    }
 }
