@@ -1,8 +1,11 @@
-package Framework;
+package Bunco;
 
 import Bunco.BuncoPlus;
+import Framework.IStrategie;
+import Framework.Jeu;
+import Framework.iterateurDe;
 
-public class StrategieBuncoPlus implements IStrategie{
+public class StrategieBuncoPlus implements IStrategie {
     @Override
     public void calculerLeVainqueur(Jeu jeu) {
 
@@ -17,11 +20,11 @@ public class StrategieBuncoPlus implements IStrategie{
             if (jeu.getNumTour()+1 == chiffreJoue){
                 point++;
             }
-            if (point == 3){
-                point = 21;
-            }
-
         }
+        if (point == 3){
+            point = 21;
+        }
+
         jeu.setPointageParTour(point);
     }
 }

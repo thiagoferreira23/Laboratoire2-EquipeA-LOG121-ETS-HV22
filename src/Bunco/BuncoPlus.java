@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class BuncoPlus extends Jeu {
 
+
     public BuncoPlus(int nbTourPourJeu, int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie typeStrategieCalcul) {
         super(nbTourPourJeu, nbDeJoueur, nbFaceDe, nbDeParJoueur, typeStrategieCalcul);
     }
@@ -26,10 +27,9 @@ public class BuncoPlus extends Jeu {
 
         //DÉMARRER LA PARTIE
         System.out.println("Commencer la partie...");
-        String demarrerJeu = sc.nextLine();
+        sc.nextLine();
 
         //AFFICHER RÉSULTAT DES DÉS PAR TOUR
-        int pointage = 0;
         while (this.getNumTour() != this.getNbTour()) {
             //CRÉER TABLEAU POUR LES JOUEURS
             iterateurJoueur iteJoueur = this.getLstJoueurEnJeu().creerIterateur();
@@ -37,39 +37,59 @@ public class BuncoPlus extends Jeu {
             //CRÉER TABLEAU POUR DÉS JOUÉS
             iterateurDe iteDe = this.getLstDeEnJeu().creerIterateur();
             int[] lstValeurDeEnJeu = new int[iteDe.size()];
-
             //JOUEUR X JOUE UN TOUR
             while (iteJoueur.hasNext()) {
                 Joueur joueur = iteJoueur.next();
-                boolean pointGagne = true;
-                while (pointGagne == true) {
-                    pointGagne = false;
+                boolean faceDeEqTour = true;
+                boolean tripleDe = true;
+                boolean bunco = false;
+                while (faceDeEqTour || tripleDe) {
+                    //REINITIALISER LES VALEURS DES COMBINAISONS
+                    faceDeEqTour = false;
+                    tripleDe = false;
 
+                    System.out.println("111111111");
+                    //INSERER LA LISTE DES DES
                     iteDe = this.getLstDeEnJeu().creerIterateur();
                     int index = 0;
-                    while (iteDe.hasNext()) {
+                    /* while (iteDe.hasNext()) {
                         lstValeurDeEnJeu[index] = iteDe.next().roulerDe();
-                        if (lstValeurDeEnJeu[index] == this.getNumTour() + 1) {
-                            pointGagne = true;
+                        if (lstValeurDeEnJeu[index] == (this.getNumTour() + 1)) {
+                            faceDeEqTour = true;
                         }
                         index++;
+                    } */
+
+                    //SI UNE FACE DE DE EQUIVALENT AU NUM. TOUR
+                    while (iteDe.hasNext()) {
+                        if (iteDe.next().roulerDe() == (this.getNumTour() + 1)) {
+                            faceDeEqTour = true;
+                        }
                     }
+
+                    //SI ON OBTIENT UN TRIPLE MAIS DIFFERENT NUM.TOUR
+                    //SI BUNCO
+
                     calculerScoreTour();
                     joueur.setPoints(joueur.getPoints() + this.getPointageParTour());
-                    afficherResultatParTour(this.getNumTour(), joueur.getIdJoueur(), lstValeurDeEnJeu, this.getPointageParTour());
-                    if (pointGagne == true) {
+                    afficherResultatParTour(joueur, this);
+                    if (faceDeEqTour == true) {
                         System.out.println("Relancer de nouveau!");
                     }
                     else {
-                        System.out.println("Prochain joueur!!");
+                        System.out.println("Prochain joueur!");
                     }
-                    String continuerJeu = sc.nextLine();
+
+                    //RELANCER OU PASSER PROCHAIN JOUEUR
+                    sc.nextLine();
                 }
             }
             this.incrementerTour();
             System.out.println("\n");
             System.out.println("Prochain tour...");
-            String continuerJeu = sc.nextLine();
+
+            //PASSER PROCHAIN TOUR
+            sc.nextLine();
         }
         System.out.println("\n \n");
         afficherResultatFinal();
@@ -78,18 +98,19 @@ public class BuncoPlus extends Jeu {
 
     //METHODES POUR TESTER LES DONNES (PAS NECESSAIRE)
     //AFFICHAGE DES RÉSULTATS
-    public void afficherResultatParTour(int numTour, int idJoueur, int[] lstValeurDe, int pointage) {
+    public void afficherResultatParTour(Joueur joueur, Jeu buncoplus){ //int numTour, int idJoueur, int[] lstValeurDe, int pointage
+        iterateurDe iterateurDe = buncoplus.getLstDeEnJeu().creerIterateur();
         System.out.println("========================");
-        System.out.println("        TOUR " + (numTour + 1));
-        System.out.println("       JOUEUR " + idJoueur);
+        System.out.println("        TOUR " + (buncoplus.getNumTour() + 1));
+        System.out.println("       JOUEUR " + joueur.getIdJoueur());
         System.out.print("======================== \n \n");
         System.out.print("DÉS JOUÉS : ");
-        for (int i = 0; i < lstValeurDe.length; i++) {
-            System.out.print(lstValeurDe[i] + " ");
+        while (iterateurDe.hasNext()){
+            System.out.print(iterateurDe.next().getFaceJouer() + " ");
         }
         System.out.print("\n");
         System.out.println("---------------");
-        System.out.println("POINTS : " + pointage);
+        System.out.println("POINTS : " + buncoplus.getPointageParTour());
         System.out.println("---------------");
         System.out.println("\n");
     }

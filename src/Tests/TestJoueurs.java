@@ -1,7 +1,7 @@
 package Tests;
 
 import Bunco.BuncoPlus;
-import Framework.*;
+import Bunco.StrategieBuncoPlus;
 
 /**
  * <p>Description de la classe</p>
