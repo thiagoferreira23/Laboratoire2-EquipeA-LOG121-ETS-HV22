@@ -21,9 +21,13 @@ public class StrategieBuncoPlus implements IStrategie {
                 point++;
             }
         }
-        if (point == 3){
+        if (((BuncoPlus)jeu).tripleCombinaison() == true){
+            point = 5;
+        }
+        if (((BuncoPlus)jeu).buncoCombinaison() == true){
             point = 21;
         }
+
 
         jeu.setPointageParTour(point);
     }
