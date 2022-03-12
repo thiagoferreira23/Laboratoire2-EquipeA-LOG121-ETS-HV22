@@ -14,6 +14,11 @@ public class De implements Comparable {
     private int faceJouer;
     private int [] aDe;
 
+    public De() {
+        this.nbFaceDe = 0;
+        this.aDe = new int[0];
+    }
+
     public De(int nbFacesDe) {
         this.nbFaceDe = nbFacesDe;
         this.aDe = new int[nbFacesDe+1];
