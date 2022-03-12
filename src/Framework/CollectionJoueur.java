@@ -30,4 +30,16 @@ public class CollectionJoueur<T> {
         iterateurJoueur iteJoueur = new iterateurJoueur(lstJoueur);
         return iteJoueur;
     }
+
+
+
+    //GETTER AND SETTER
+    public Joueur[] getLstJoueur() {
+        return lstJoueur;
+    }
+
+    public void setLstJoueur(Joueur[] lstJoueur) {
+        this.lstJoueur = lstJoueur;
+    }
+
 }

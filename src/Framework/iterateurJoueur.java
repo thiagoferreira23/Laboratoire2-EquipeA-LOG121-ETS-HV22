@@ -31,4 +31,6 @@ public class iterateurJoueur implements Iterator<Joueur> {
         }
         return i;
     }
+
+    public void ordreDecroissant(){}
 }

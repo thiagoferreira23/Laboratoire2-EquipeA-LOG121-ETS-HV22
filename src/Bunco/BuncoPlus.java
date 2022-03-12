@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class BuncoPlus extends Jeu {
 
-
     public BuncoPlus(int nbTourPourJeu, int nbDeJoueur, int nbFaceDe, int nbDeParJoueur, IStrategie typeStrategieCalcul) {
         super(nbTourPourJeu, nbDeJoueur, nbFaceDe, nbDeParJoueur, typeStrategieCalcul);
     }
 
+    //CALCUL DES POINTS ET VAINQUEUR
     @Override
     public void calculerScoreTour() {
         this.getTypeStrategieCalcul().calculerScoreTour(this);
@@ -22,6 +22,7 @@ public class BuncoPlus extends Jeu {
         this.getTypeStrategieCalcul().calculerLeVainqueur(this);
     }
 
+    //LISTE DES COMBINAISONS POSSIBLE POUR JEU BUNCO
     public boolean buncoCombinaison(){
         iterateurDe ite = this.getLstDeEnJeu().creerIterateur();
         int deJoue = ite.next().getFaceJouer();
@@ -50,13 +51,11 @@ public class BuncoPlus extends Jeu {
                 triple = false;
             }
         }
-        if (triple == true){
-            return true;
-        }
-        else
-            return false;
-    };
+        return triple;
+    }
 
+
+    //METHODE POUR JOUER LE JEU
     public void jouer() {
         Scanner sc = new Scanner(System.in);
 
@@ -70,7 +69,6 @@ public class BuncoPlus extends Jeu {
             iterateurJoueur iteJoueur = this.getLstJoueurEnJeu().creerIterateur();
 
             //JOUEUR X JOUE UN TOUR
-            int valeurDeSimilaire = 0;
             while (iteJoueur.hasNext()) {
                 Joueur joueur = iteJoueur.next();
                 boolean rejouerTour = true;
@@ -86,6 +84,7 @@ public class BuncoPlus extends Jeu {
                         rejouerTour = true;
                     }
                     System.out.println(rejouerTour);
+
                     //SI ON OBTIENT UN TRIPLE MAIS DIFFERENT NUM.TOUR
                     if (tripleCombinaison() == false) {
                         //SI UNE FACE DE DE EQUIVALENT AU NUM. TOUR
@@ -97,7 +96,7 @@ public class BuncoPlus extends Jeu {
                         }
                     }
 
-                    //SI BUNCO
+                    //SI ON OBTIENT UN TRIPLE + BUNCO
                     if (tripleCombinaison() == true) {
                         if (buncoCombinaison() == true){
                             rejouerTour = false;
@@ -160,7 +159,9 @@ public class BuncoPlus extends Jeu {
             Joueur joueur = iteJoueur.next();
             System.out.println(joueur.getNomComplet() + " : " + joueur.getPoints() + " POINTS");
         }
+        iteJoueur = this.getLstJoueurEnJeu().creerIterateur();
         System.out.print("\n");
+        System.out.println("VAINQUEUR : " + iteJoueur.next());
         System.out.println("---------------");
         System.out.println("\n");
     }

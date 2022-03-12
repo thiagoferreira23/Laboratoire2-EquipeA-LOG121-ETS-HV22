@@ -15,6 +15,7 @@ public abstract class Jeu {
     private int numTour = 0;
     private int nbTour;
     private int pointageParTour; //Pointage par tour
+    private Joueur vainqueurPartie = null;
   
     /**
      <p>Cette méthode est le constructeur par défaut de la classe Jeu. Elle
@@ -41,7 +42,7 @@ public abstract class Jeu {
     public void creerJoueur(int nbDeJoueur) {
         CollectionJoueur<Joueur> lstNvJoueur = new CollectionJoueur<Joueur>(nbDeJoueur);
         for (int i = 0; i < nbDeJoueur; i++){
-            lstNvJoueur.ajouterJoueur(new Joueur ("J"+(i+1), (i+1), 0, true));
+            lstNvJoueur.ajouterJoueur(new Joueur ("J"+(i+1), (i+1), (50+i), true));
         }
         this.lstJoueurEnJeu = lstNvJoueur;
     }

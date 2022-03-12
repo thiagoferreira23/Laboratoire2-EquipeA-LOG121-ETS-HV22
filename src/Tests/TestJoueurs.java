@@ -36,8 +36,10 @@ public class TestJoueurs {
         //de.affichageTab();*/
 
         //Test Bunco+
-        BuncoPlus buncoPlus = new BuncoPlus(2,3,6,3, new StrategieBuncoPlus());
-        buncoPlus.jouer();
+        BuncoPlus buncoPlus = new BuncoPlus(1,10,6,3, new StrategieBuncoPlus());
+        buncoPlus.calculerLeVainqueur();
+        buncoPlus.afficherResultatFinal();
+
 
 
 
