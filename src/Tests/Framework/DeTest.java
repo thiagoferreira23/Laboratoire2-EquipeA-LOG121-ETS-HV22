@@ -1,7 +1,6 @@
 package Framework;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -38,11 +37,19 @@ class DeTest {
         de1.setNbFacesDe(6);
         assertEquals(6, de1.getNbFacesDe());
     }
+    @Test
+    @DisplayName("Vérification du remplissage du tableau")
+    void testRemplissageTableau(){
+        de1.setaDe(new int[6]);
+        de1.remplissageDe(de1.getaDe());
+
+        assertEquals(6,de1.getaDe().length);
+    }
 
     @Test
     public void memeDeTest() {
         de1.setNbFacesDe(4);
-        assertTrue(de1.compareTo(de1) == 0);
+        assertEquals(0, de1.compareTo(de1));
     }
 
     @Test
