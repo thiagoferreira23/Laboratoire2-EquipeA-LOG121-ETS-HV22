@@ -37,14 +37,16 @@ class DeTest {
         de1.setNbFacesDe(6);
         assertEquals(6, de1.getNbFacesDe());
     }
+
     @Test
     @DisplayName("Vérification du remplissage du tableau")
-    void testRemplissageTableau(){
+    void testRemplissageTableau() {
         de1.setaDe(new int[6]);
         de1.remplissageDe(de1.getaDe());
 
-        assertEquals(6,de1.getaDe().length);
+        assertEquals(6, de1.getaDe().length);
     }
+
 
     @Test
     public void memeDeTest() {
