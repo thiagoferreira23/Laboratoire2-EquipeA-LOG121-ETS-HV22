@@ -9,11 +9,12 @@ package Framework;
  */
 public class CollectionJoueur<T> {
     private Joueur[] lstJoueur;
-
+    private iterateurJoueur iteJoueur;
     public CollectionJoueur(int lstJoueurCapacite){
         lstJoueur = new Joueur[lstJoueurCapacite];
     }
 
+    //METHODES
     public void ajouterJoueur(Joueur joueur){
         for (int i = 0; i < lstJoueur.length; i++){
             if (lstJoueur[i] == null){
@@ -27,11 +28,9 @@ public class CollectionJoueur<T> {
     }
 
     public iterateurJoueur creerIterateur(){
-        iterateurJoueur iteJoueur = new iterateurJoueur(lstJoueur);
+        iteJoueur = new iterateurJoueur(lstJoueur);
         return iteJoueur;
     }
-
-
 
     //GETTER AND SETTER
     public Joueur[] getLstJoueur() {
