@@ -1,3 +1,2 @@
-out
-out/production
-out/test
+/out/
+/out/production/
