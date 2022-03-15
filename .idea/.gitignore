@@ -7,3 +7,7 @@
 /dataSources/
 /dataSources.local.xml
 /vcs.xml
+
+
+/out/
+/out/production/
