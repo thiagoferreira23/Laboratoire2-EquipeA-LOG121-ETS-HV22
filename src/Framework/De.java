@@ -24,7 +24,9 @@ public class De implements Comparable {
         this.aDe = new int[nbFacesDe+1];
         remplissageDe(aDe);
     }
-    public void remplissageDe(int [] tab){
+
+    //METHODES
+    private void remplissageDe(int [] tab){
         for(int i = 1 ; i < tab.length; i++){
             tab[i]+=i;
         }

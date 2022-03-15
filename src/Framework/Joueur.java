@@ -28,6 +28,8 @@ public class Joueur implements Comparable{
         this.status = status;
     }
 
+
+    //GETTER AND SETTER
     @Override
     public String toString() {
         return nomComplet +", le Joueur " + idJoueur + " a obtenu " + points +" points";
@@ -64,6 +66,9 @@ public class Joueur implements Comparable{
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+    //METHODES
+    public void ajouterPoints (int points) { this.setPoints(this.getPoints() + points); }
 
     public int compareTo(Object o) {
         //METHODES

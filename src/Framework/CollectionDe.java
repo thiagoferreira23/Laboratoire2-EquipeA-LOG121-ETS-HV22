@@ -28,6 +28,7 @@ public class CollectionDe<T>{
         }
     }
 
+    //METHODES
     public iterateurDe creerIterateur(){
         iteDe = new iterateurDe(lstDe);
         return iteDe;
