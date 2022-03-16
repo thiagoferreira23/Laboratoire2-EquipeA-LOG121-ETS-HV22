@@ -1,6 +1,5 @@
 package Framework;
 
-
 /**
  * <p>Cette classe représente une collection de dés. Elle possède une liste qui
  * contient tous les dés composant un type de jeu de dé. De plus, elle permet
@@ -20,7 +19,7 @@ public class CollectionDe<T> {
      * permet de configurer les paramètres de cette classe avec les paramètres
      * qu'elle reçoit en paramètre.</p>
      *
-     * @param lstDeCapacite ***
+     * @param lstDeCapacite Ce paramètre défini la taille du tableau de Dé
      */
     public CollectionDe(int lstDeCapacite) {
         lstDe = new De[lstDeCapacite];
