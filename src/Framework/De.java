@@ -26,7 +26,7 @@ public class De implements Comparable {
     }
 
     //METHODES
-    private void remplissageDe(int [] tab){
+    public void remplissageDe(int [] tab){
         for(int i = 1 ; i < tab.length; i++){
             tab[i]+=i;
         }
@@ -43,6 +43,7 @@ public class De implements Comparable {
         this.faceJouer = rnd.nextInt(this.nbFaceDe) + 1;
         return this.faceJouer;
     }
+
 
     //GETTER ET SETTER
     public int getNbFacesDe() {

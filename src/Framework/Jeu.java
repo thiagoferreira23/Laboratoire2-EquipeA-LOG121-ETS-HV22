@@ -33,6 +33,7 @@ public abstract class Jeu {
         setTypeStrategieCalcul(typeStrategieCalcul);
     }
 
+
     //METHODES
 
     /**

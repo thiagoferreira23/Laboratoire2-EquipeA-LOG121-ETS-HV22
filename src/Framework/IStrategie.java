@@ -9,6 +9,6 @@ package Framework;
  */
 public interface IStrategie {
     public CollectionJoueur calculerLeVainqueur(Jeu jeu);
-    public void calculerScoreTour(Jeu jeu);
+    public boolean calculerScoreTour(Jeu jeu);
 
 }

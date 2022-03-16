@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Scanner;
 
 public class StrategieBuncoPlus implements IStrategie {
+    private int pointParTours;
     @Override
     public CollectionJoueur calculerLeVainqueur(Jeu jeu) {
         iterateurJoueur iteJoueur = jeu.getLstJoueurEnJeu().creerIterateur();
@@ -37,11 +38,13 @@ public class StrategieBuncoPlus implements IStrategie {
 
     //METHODE POUR (TEST UNITAIRE)
     @Override
-    public void calculerScoreTour(Jeu jeu) {
-        Scanner sc = new Scanner(System.in);
+    public boolean calculerScoreTour(Jeu jeu) {
+      //  Scanner sc = new Scanner(System.in);
 
         //CRÉE ITERATEUR POUR ROULER LES DES
         iterateurJoueur iteJoueur = jeu.getLstJoueurEnJeu().creerIterateur();
+
+        Boolean tourValide = true;
 
         //JOUEUR X JOUE UN TOUR
         while (iteJoueur.hasNext()) {
@@ -58,7 +61,7 @@ public class StrategieBuncoPlus implements IStrategie {
                 iterateurDe iteDe = jeu.getLstDeEnJeu().creerIterateur();
                 while (iteDe.hasNext()) {
                     int deJoue = iteDe.next().roulerDe();
-                    if (deJoue == (jeu.getNumTour() + 1)) {
+                    if (deJoue == (jeu.getNumTour() + 1)) { //si les des obetnues sont egal au tour courant
                         rejouerTour = true;
                         point++;
                     }
@@ -77,8 +80,12 @@ public class StrategieBuncoPlus implements IStrategie {
                     }
                 }
                 joueur.ajouterPoints(point);
+                pointParTours = point;
+                return rejouerTour;
             }
+
         }
+                return false;
     }
 
 

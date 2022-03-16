@@ -1,5 +1,8 @@
 package Framework;
 
+import Bunco.BuncoPlus;
+import Bunco.StrategieBuncoPlus;
+
 /**
  * <p>Description de la classe</p>
  *
@@ -29,5 +32,32 @@ public class FabriqueJeu {
         creerJoueur(nbJoueur);
         creerDe(nbFaceDe, nbDeParJoueur);
         jouer();
+    }
+
+
+    public static void main(String[] args) {
+
+
+
+        BuncoPlus jeuBunco = new BuncoPlus(6,3,6,3,new StrategieBuncoPlus());
+
+        jeuBunco.jouer();
+
+
+        iterateurJoueur joueursQuiJouent = jeuBunco.getLstJoueurEnJeu().creerIterateur();
+
+        while (joueursQuiJouent.hasNext()) {
+            Joueur joueur = joueursQuiJouent.next();
+          //  System.out.println(joueur.getNomComplet() + " : " + joueur.getPoints() + " POINTS");
+            jeuBunco.afficherResultatParTour(joueur,jeuBunco,joueur.getPoints());
+        }
+
+
+
+        jeuBunco.afficherResultatFinal();
+
+
+
+
     }
 }
