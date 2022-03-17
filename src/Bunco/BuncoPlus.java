@@ -13,10 +13,20 @@ public class BuncoPlus extends Jeu {
 
     //CALCUL DES POINTS ET VAINQUEUR
     @Override
+    /**
+     * <p>Cette méthode est la redéfinition de la méthode calculerScoreTour dans la classe Jeu.
+     * Elle permet de d'aller chercher la méthode calculerScoreTour dans la stratégie</p>
+     *
+     *
+     */
     public void calculerScoreTour() {
         this.getTypeStrategieCalcul().calculerScoreTour(this);
     }
-
+    /**
+     * <p>Cette méthode est la redéfinition de la méthode calculerLeVainqueur dans la classe Jeu.
+     * Elle permet de d'aller chercher la méthode calculerLeVainqueur dans la stratégie</p>
+     *
+     */
     @Override
     public void calculerLeVainqueur() {
         this.getTypeStrategieCalcul().calculerLeVainqueur(this);
@@ -25,6 +35,10 @@ public class BuncoPlus extends Jeu {
     //LISTE DES COMBINAISONS POSSIBLE POUR JEU BUNCO
 
     //COMBINAISON BUNCO
+    /**
+     * <p>Cette méthode permet de voir si on obtient un bunco.</p>
+     * @return boolean
+     */
     public boolean buncoCombinaison(){
         iterateurDe ite = this.getLstDeEnJeu().creerIterateur();
         int deJoue = ite.next().getFaceJouer();
@@ -38,6 +52,10 @@ public class BuncoPlus extends Jeu {
         return false;
     }
     //COMBINAISON TRIPLE
+    /**
+     * <p>Cette méthode permet de voir si on pbtient 3 fois le même dé.</p>
+     * @return boolean triple
+     */
     public boolean tripleCombinaison(){
         iterateurDe iteDe = this.getLstDeEnJeu().creerIterateur();
         //STOCK LA PREMIERE VALEUR DE LA LISTE
@@ -60,6 +78,11 @@ public class BuncoPlus extends Jeu {
     }
 
     //METHODE JOUER (TEST UNITAIRE)
+    /**
+     * <p>Cette méthode est celle qui permet de démarrer le jeu
+     * /p>
+     *
+     */
     public void jouer() {
         //AFFICHER RÉSULTAT DES DÉS PAR TOUR
         while (this.getNumTour() != this.getNbTour()) {
@@ -93,6 +116,10 @@ public class BuncoPlus extends Jeu {
 
     //METHODES POUR TESTER LES DONNES (PAS NECESSAIRE)
     //AFFICHAGE DES RÉSULTATS
+    /**
+     * <p>Cette méthode permet d'afficher le resultat par tour'</p>
+     *
+     */
     public void afficherResultatParTour(Joueur joueur, Jeu buncoplus, int pointTour) { //int numTour, int idJoueur, int[] lstValeurDe, int pointage
         iterateurDe iterateurDe = buncoplus.getLstDeEnJeu().creerIterateur();
         System.out.println("========================");
@@ -111,6 +138,10 @@ public class BuncoPlus extends Jeu {
     }
 
     //AFFICHAGE DES RÉSULTATS FINALS
+    /**
+     * <p>Cette méthode permet d'afficher le resultat final'</p>
+     *
+     */
     public void afficherResultatFinal() {
         iterateurJoueur iteJoueur = this.getLstJoueurEnJeu().creerIterateur();
         System.out.println("=========================");

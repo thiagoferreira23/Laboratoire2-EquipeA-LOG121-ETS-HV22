@@ -12,7 +12,12 @@ public class StrategieBuncoPlus implements IStrategie {
     public int getPointParTours() {
         return pointParTours;
     }
-
+    /**
+     * <p>Cette méthode permet de recevoir en paramètre la variante du Jeu Bunco plus
+     * pour ensuite calculer le vainqueur.</p>
+     *
+     * @param jeu le jeu Bunco plus
+     */
     @Override
     public CollectionJoueur calculerLeVainqueur(Jeu jeu) {
         iterateurJoueur iteJoueur = jeu.getLstJoueurEnJeu().creerIterateur();
@@ -42,6 +47,14 @@ public class StrategieBuncoPlus implements IStrategie {
     }
 
     //METHODE POUR (TEST UNITAIRE)
+    /**
+     * <p>Cette méthode permet de recevoir en paramètre la variante du Jeu Bunco plus
+     * pour ensuite calculer le socre et voir si on passe la main au prochain jouer ou on garde la main,
+     * tout dépendament du score qu'on obtient.</p>
+     *
+     * @param jeu le jeu Bunco plus
+     * @return rejouerTour
+     */
     @Override
     public boolean calculerScoreTour(Jeu jeu) {
       //  Scanner sc = new Scanner(System.in);
