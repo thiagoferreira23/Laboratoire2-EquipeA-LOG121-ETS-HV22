@@ -29,7 +29,7 @@ public class BuncoPlus extends Jeu {
         iterateurDe ite = this.getLstDeEnJeu().creerIterateur();
         int deJoue = ite.next().getFaceJouer();
         if (tripleCombinaison() == true){
-            if (deJoue == this.getNumTour()+1){
+            if (deJoue == this.getNumTour()){
                 return true;
             }
             else

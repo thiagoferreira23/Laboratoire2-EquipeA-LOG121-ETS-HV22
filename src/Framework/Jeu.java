@@ -12,7 +12,7 @@ public abstract class Jeu {
     private CollectionJoueur<Joueur> lstJoueurEnJeu;
     private CollectionDe<De> lstDeEnJeu;
     private IStrategie typeStrategieCalcul;
-    private int numTour = 0;
+    private int numTour = 1;
     private int nbTour;
   
     /**

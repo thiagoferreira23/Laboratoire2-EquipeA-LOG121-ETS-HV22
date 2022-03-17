@@ -141,11 +141,11 @@ public class De implements Comparable {
 
     /**
      * <p>
-     * TODO
+     * Compare les dés jouées
      * </p>
      *
-     * @param o TODO
-     * @return TODO
+     * @param o : Objet de type o, où o est un objet de type Dé
+     * @return chiffre correspond
      */
     public int compareTo(Object o) {
 

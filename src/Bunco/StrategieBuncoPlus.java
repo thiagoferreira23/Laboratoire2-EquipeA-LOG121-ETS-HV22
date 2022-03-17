@@ -65,8 +65,8 @@ public class StrategieBuncoPlus implements IStrategie {
                 //CRÉE ITERATEUR POUR ROULER LES DES
                 iterateurDe iteDe = jeu.getLstDeEnJeu().creerIterateur();
                 while (iteDe.hasNext()) {
-                    int deJoue = iteDe.next().roulerDe();
-                    if (deJoue == (jeu.getNumTour() + 1)) { //si les des obetnues sont egal au tour courant
+                    int deJoue = iteDe.next().getFaceJouer();
+                    if (deJoue == (jeu.getNumTour())) { //si les des obetnues sont egal au tour courant
                         rejouerTour = true;
                         point++;
                     }
@@ -74,6 +74,7 @@ public class StrategieBuncoPlus implements IStrategie {
 
                 //TRIPLE : (AVEC BUNCO) OU (SANS BUNCO)
                 if (((BuncoPlus) jeu).tripleCombinaison() == true) {
+
                     if (((BuncoPlus) jeu).buncoCombinaison() == true) {
                         rejouerTour = false;
                         point = 21;
@@ -85,7 +86,6 @@ public class StrategieBuncoPlus implements IStrategie {
                     }
                 }
                 joueur.ajouterPoints(point);
-                point = 21;
                 this.pointParTours = point;
                 return rejouerTour;
             }
@@ -119,7 +119,7 @@ public class StrategieBuncoPlus implements IStrategie {
                 iterateurDe iteDe = jeu.getLstDeEnJeu().creerIterateur();
                 while (iteDe.hasNext()) {
                     int deJoue = iteDe.next().roulerDe();
-                    if (deJoue == (jeu.getNumTour() + 1)) {
+                    if (deJoue == (jeu.getNumTour())) {
                         rejouerTour = true;
                         point++;
                     }
