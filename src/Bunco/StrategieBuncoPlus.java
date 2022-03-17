@@ -7,7 +7,12 @@ import java.util.Collection;
 import java.util.Scanner;
 
 public class StrategieBuncoPlus implements IStrategie {
-    private int pointParTours;
+    private int pointParTours=0;
+
+    public int getPointParTours() {
+        return pointParTours;
+    }
+
     @Override
     public CollectionJoueur calculerLeVainqueur(Jeu jeu) {
         iterateurJoueur iteJoueur = jeu.getLstJoueurEnJeu().creerIterateur();
@@ -80,7 +85,8 @@ public class StrategieBuncoPlus implements IStrategie {
                     }
                 }
                 joueur.ajouterPoints(point);
-                pointParTours = point;
+                point = 21;
+                this.pointParTours = point;
                 return rejouerTour;
             }
 
