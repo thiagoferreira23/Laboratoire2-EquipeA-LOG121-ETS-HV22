@@ -1,7 +1,8 @@
 package Framework;
 
 /**
- * <p>Description de la classe</p>
+ * <p>Cette classe est une classe abstraite qui sert de gabarit pour
+ * toutes les stratégies de jeu qui peuvent être créées.</p>
  *
  * @author Franco Huynh, Gabriel M. Borges & Thiago Ferreira
  * @version 1.0
