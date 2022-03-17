@@ -6,6 +6,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * <p>Cette classe permet d'effectuer des tests de la classe De faisant
+ * partie du paquet Framework. Dans cette classe de test JUnit, nous testerons
+ * les constructeurs, les getters et setters, ainsi que les méthodes roulerDe()
+ * et compareTo().</p>
+ *
+ * @author Franco Huynh, Gabriel M. Borges & Thiago Ferreira
+ * @version 1.0
+ * @since 2022-03-13 11:16 a.m.
+ */
 class DeTest {
 
     private static De de; //Test des valeurs par défaut du constructeur
